@@ -7,12 +7,18 @@ This project was built with Laravel PHP while PHPCS and PHPStan are setup and co
 
 
 ## Installation
-- Clone the project to your local machine by running this command *composer install*
+- Clone the project to your local machine by running this command *git clone https://github.com/codeInBit/galactic-imperial-fleet-app.git*
 - Run the command *composer install*
 - Run the command *php artisan key:generate*
 - If .env file diesn't exist, run the command *cp .env.example .env*
 - In the .env file, update the necessary information to allow connection to a database
 - Run the command *php artisan migrate --seed*
+- Run the command *php artisan passport:install*
+
+## To test user authentication, login with ;
+Email - *abc@test.com*
+Password - *password*
+
 
 
 The [Postman Documentation](https://documenter.getpostman.com/view/19466434/Uz5MFZ9u) link to view the endpoints request and response.
