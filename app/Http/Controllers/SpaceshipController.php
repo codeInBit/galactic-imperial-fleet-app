@@ -39,7 +39,7 @@ class SpaceshipController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\StoreSpaceshipRequest  $request
+     * @param  StoreSpaceshipRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreSpaceshipRequest $request)
