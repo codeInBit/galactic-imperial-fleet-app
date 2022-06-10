@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSpaceshipRequest extends FormRequest
+class UpdateSpaceshipRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,9 +30,6 @@ class StoreSpaceshipRequest extends FormRequest
             'image' => ['required', 'string', 'url', 'min:0'],
             'value' => ['required', 'numeric', ],
             'status' => ['required', 'string'],
-            'armament' => ['required', 'array'],
-            'armament.*.title' => ['required', 'string'],
-            'armament.*.qty' => ['required', 'integer', 'numeric', 'min:0'],
         ];
     }
 }
