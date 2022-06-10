@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\StoreSpaceshipRequest;
+use App\Http\Requests\UpdateSpaceshipRequest;
 use App\Http\Resources\SpaceshipResource;
 use App\Http\Resources\ArmamentResource;
+use App\Services\SpaceshipService;
 use Illuminate\Http\Request;
 use App\Models\Spaceship;
 use App\Models\Armament;
@@ -50,28 +52,15 @@ class SpaceshipController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreSpaceshipRequest  $request
+     * @param  SpaceshipService  $spaceshipService
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreSpaceshipRequest $request)
+    public function store(StoreSpaceshipRequest $request, SpaceshipService $spaceshipService)
     {
         try {
             DB::beginTransaction();
 
-            $spaceship = Spaceship::create([
-                'name' => $request->name,
-                'class' => $request->class,
-                'crew' => $request->crew,
-                'image' => $request->image,
-                'value' => $request->value,
-                'status' => $request->status,
-            ]);
-
-            foreach ($request->armament as $value) {
-                $spaceship->armaments()->create([
-                    'title' => $value['title'],
-                    'qty' => $value['qty'],
-                ]);
-            }
+            $spaceshipService->createSpaceship($request->validated());
 
             DB::commit();
 
@@ -97,12 +86,14 @@ class SpaceshipController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UpdateSpaceshipRequest  $request
+     * @param  Spaceship  $spaceship
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSpaceshipRequest $request, SpaceshipService $spaceshipService, Spaceship $spaceship)
     {
+        $spaceshipService->updateSpaceship($request->validated());
+
         return response()->json(["success" => true], Response::HTTP_OK);
     }
 

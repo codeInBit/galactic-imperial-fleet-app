@@ -19,11 +19,7 @@ trait ApiJsonResponse
      */
     public function successResponse($data = null, $message = "Successful", $statusCode = Response::HTTP_OK): JsonResponse
     {
-        $response = null;
-        if ($data) {
-            $response["data"] = $data;
-        }
-        return response()->json($response, $statusCode);
+        return response()->json($data, $statusCode);
     }
 
     public function searchableResponse($query, string $resources, array $config = [])

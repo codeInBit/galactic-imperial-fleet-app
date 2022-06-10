@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="SimpleStream" namespace="MyProject\CS\Standard">
-    <description>SimpleStream coding standard</description>
+<ruleset name="Galactic" namespace="MyProject\CS\Standard">
+    <description>Galactic coding standard</description>
     <arg name="colors"/><!-- add colors cli parameter by default -->
 
     <!--
